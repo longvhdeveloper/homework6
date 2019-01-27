@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    
+    <changeSet id="1" author="vlong">
+        <createTable tableName="account">
+            <column name="id" type="int(11)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="email" type="varchar(191)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="user_role" type="tinyint(1)">
+                <constraints nullable="false"></constraints>F
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="vlong">
+        <addUniqueConstraint tableName="account" columnNames="email" constraintName="email_uniqueKey"></addUniqueConstraint>
+        <createIndex tableName="account" indexName="idx_user_role">
+            <column name="user_role"></column>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
